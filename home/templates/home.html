@@ -1,0 +1,32 @@
+
+{% extends 'index.html' %}
+
+
+{% block title %}
+    Home
+{% endblock title %}
+    
+
+{% block content %}
+    <div class="container">
+        {% if user.is_authenticated %}
+        <h1>Hello {{ user }}</h1>
+        {% else %}
+        <h1>Hello Guest</h1>
+        {% endif %}
+
+        {% for post in posts %}
+
+        <div class="card" style="width: 80%;">
+            <img class="card-img-top" src="{{ post.photo.url }}" alt="{{ post.title }}">
+            <div class="card-body">
+              <h5 class="card-title">{{ post.title }}</h5>
+              <p class="card-text">{{ post.caption }}</p>
+              {% comment %} <a href="#" class="btn btn-primary">Go somewhere</a> {% endcomment %}
+            </div>
+          </div>
+
+        {% endfor %}
+        </div>
+{% endblock content %}
+    
