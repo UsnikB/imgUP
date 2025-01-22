@@ -1,0 +1,17 @@
+.card{
+    margin: 10px;
+    padding: 3rch;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px #ccc;
+}
+.dashboard-body {
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Full viewport height */
+}
+
+.user-name{
+    font-style: italic;
+    color: red;
+}

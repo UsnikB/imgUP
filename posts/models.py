@@ -9,9 +9,10 @@ class CreateUpdateModel(models.Model):
         abstract = True
 
 class Post(CreateUpdateModel):
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=100, unique=True)
     photo = models.ImageField(upload_to='posts', default='posts/default.jpg', max_length=300)
     caption = models.TextField()
+    post_type = models.CharField(max_length=10, default='text')
     owner = models.ForeignKey(
         User,
         on_delete=models.CASCADE
