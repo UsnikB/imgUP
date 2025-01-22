@@ -16,10 +16,14 @@ def index(request):
     # comments from current user
     comments = Comment.objects.all()
     
+    post_comments = {post.id: [] for post in posts}
+    for comment in comments:
+        post_comments[comment.post_id].append(comment)
+    
     context_data = {
         'user': request.user,
         'posts': posts,
-        'comments': comments
+        'post_comments': post_comments
     }
     return render(request, 'home.html', context_data)
 

@@ -22,6 +22,11 @@ class Post(CreateUpdateModel):
 
 class Comment(CreateUpdateModel):
     text = models.TextField()
+    owner = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        default=1
+    )
     post = models.ForeignKey(
         Post,
         on_delete=models.CASCADE

@@ -1,5 +1,6 @@
 {% extends 'index.html' %}
 {% load static %}
+{% load custom_filters %}
 
 {% block title %}
     Home
@@ -21,7 +22,7 @@
         <div class="row justify-content-center mb-4">
             <div class="card col-md-6 p-0 shadow-sm">
                 <div class="card-header">
-                    <a href="{% url 'user_profile' post.owner %}"><span class="text-primary">{{ post.owner }}</span></a> - {{ post.created_at|date:"F d, Y" }}
+                    <a href="{% url 'user_profile' post.owner %}"><span class="text-primary">{{ post.owner }}</span></a>
                 </div>
                 {% if post.post_type == 'photo' %}
                 <img class="card-img-top" src="{{ post.photo.url }}" alt="{{ post.title }}" style="object-fit: cover; height: 200px;">
@@ -38,9 +39,9 @@
                     <!-- Comments Section -->
                     <h6>Comments</h6>
                     <div>
-                        {% for comment in post.comments.all %}
+                        {% for comment in post_comments|get_item:post.id %}
                         <div class="mb-2">
-                            <strong>{{ comment.user }}</strong>: {{ comment.text }}
+                            <strong>{{ comment.owner }}</strong>: {{ comment.text }}
                         </div>
                         {% empty %}
                         <p class="text-muted">No comments yet. Be the first to comment!</p>
